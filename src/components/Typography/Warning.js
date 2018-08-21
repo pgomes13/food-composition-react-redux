@@ -5,17 +5,19 @@ import withStyles from "@material-ui/core/styles/withStyles";
 // core components
 import typographyStyle from "assets/jss/material-dashboard-react/components/typographyStyle.jsx";
 
-function Danger({ ...props }) {
-  const { classes, children } = props;
+const _Warning = ({ classes, children }) => {
+
   return (
-    <div className={classes.defaultFontStyle + " " + classes.dangerText}>
+    <div className={classes.defaultFontStyle + " " + classes.warningText}>
       {children}
     </div>
   );
-}
+};
 
-Danger.propTypes = {
+_Warning.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(typographyStyle)(Danger);
+const Warning = withStyles(typographyStyle)(_Warning);
+
+export { Warning };

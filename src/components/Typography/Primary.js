@@ -5,17 +5,19 @@ import withStyles from "@material-ui/core/styles/withStyles";
 // core components
 import typographyStyle from "assets/jss/material-dashboard-react/components/typographyStyle.jsx";
 
-function Muted({ ...props }) {
-  const { classes, children } = props;
+const _Primary = ({ classes, children }) => {
+
   return (
-    <div className={classes.defaultFontStyle + " " + classes.mutedText}>
+    <div className={classes.defaultFontStyle + " " + classes.primaryText}>
       {children}
     </div>
   );
-}
+};
 
-Muted.propTypes = {
+_Primary.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(typographyStyle)(Muted);
+const Primary = withStyles(typographyStyle)(_Primary);
+
+export { Primary };
