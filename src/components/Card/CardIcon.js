@@ -5,7 +5,7 @@ import withStyles from "@material-ui/core/styles/withStyles";
 
 import cardIconStyle from "assets/jss/material-dashboard-react/components/cardIconStyle.jsx";
 
-const CardIcon = ({ classes, className, children, color, ...rest }) => {
+const _CardIcon = ({ classes, className, children, color, ...rest }) => {
 
 	const cardIconClasses = classNames({
 		[classes.cardIcon]: true,
@@ -20,7 +20,7 @@ const CardIcon = ({ classes, className, children, color, ...rest }) => {
 	);
 };
 
-CardIcon.propTypes = {
+_CardIcon.propTypes = {
 	classes: PropTypes.object.isRequired,
 	className: PropTypes.string,
 	color: PropTypes.oneOf([
@@ -33,4 +33,6 @@ CardIcon.propTypes = {
 	])
 };
 
-export default withStyles(cardIconStyle)(CardIcon);
+const CardIcon =  withStyles(cardIconStyle)(_CardIcon);
+
+export { CardIcon };

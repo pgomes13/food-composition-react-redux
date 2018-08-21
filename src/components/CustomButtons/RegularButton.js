@@ -6,7 +6,7 @@ import Button from "@material-ui/core/Button";
 
 import buttonStyle from "assets/jss/material-dashboard-react/components/buttonStyle.jsx";
 
-const RegularButton = ({ classes, color, round, children, disabled, simple, size, block, link, justIcon, className, muiClasses, ...rest }) => {
+const _RegularButton = ({ classes, color, round, children, disabled, simple, size, block, link, justIcon, className, muiClasses, ...rest }) => {
 	
 	const btnClasses = classNames({
 		[classes.button]: true,
@@ -28,7 +28,7 @@ const RegularButton = ({ classes, color, round, children, disabled, simple, size
 	);
 };
 
-RegularButton.propTypes = {
+_RegularButton.propTypes = {
 	classes: PropTypes.object.isRequired,
 	color: PropTypes.oneOf([
 		"primary",
@@ -52,4 +52,6 @@ RegularButton.propTypes = {
 	muiClasses: PropTypes.object
 };
 
-export default withStyles(buttonStyle)(RegularButton);
+const RegularButton = withStyles(buttonStyle)(_RegularButton);
+
+export { RegularButton };

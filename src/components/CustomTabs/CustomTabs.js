@@ -9,7 +9,7 @@ import { Card, CardBody, CardHeader } from "../index";
 
 import customTabsStyle from "assets/jss/material-dashboard-react/components/customTabsStyle.jsx";
 
-class CustomTabs extends React.Component {
+class _CustomTabs extends React.Component {
 	
 	state = {
 		value: 0
@@ -87,7 +87,7 @@ class CustomTabs extends React.Component {
 	}
 }
 
-CustomTabs.propTypes = {
+_CustomTabs.propTypes = {
 	classes: PropTypes.object.isRequired,
 	headerColor: PropTypes.oneOf([
 		"warning",
@@ -108,4 +108,6 @@ CustomTabs.propTypes = {
 	plainTabs: PropTypes.bool
 };
 
-export default withStyles(customTabsStyle)(CustomTabs);
+const CustomTabs = withStyles(customTabsStyle)(_CustomTabs);
+
+export { CustomTabs };

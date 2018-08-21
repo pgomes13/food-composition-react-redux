@@ -10,7 +10,7 @@ import Check from "@material-ui/icons/Check";
 
 import customInputStyle from "assets/jss/material-dashboard-react/components/customInputStyle";
 
-const CustomInput = ({ classes, formControlProps, labelText, id, labelProps, inputProps, error, success }) => {
+const _CustomInput = ({ classes, formControlProps, labelText, id, labelProps, inputProps, error, success }) => {
 
 	const labelClasses = classNames({
 		[" " + classes.labelRootError]: error,
@@ -57,7 +57,7 @@ const CustomInput = ({ classes, formControlProps, labelText, id, labelProps, inp
 	);
 };
 
-CustomInput.propTypes = {
+_CustomInput.propTypes = {
 	classes: PropTypes.object.isRequired,
 	labelText: PropTypes.node,
 	labelProps: PropTypes.object,
@@ -68,4 +68,6 @@ CustomInput.propTypes = {
 	success: PropTypes.bool
 };
 
-export default withStyles(customInputStyle)(CustomInput);
+const CustomInput = withStyles(customInputStyle)(_CustomInput);
+
+export { CustomInput };

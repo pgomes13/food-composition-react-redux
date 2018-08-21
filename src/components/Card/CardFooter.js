@@ -5,7 +5,7 @@ import withStyles from "@material-ui/core/styles/withStyles";
 
 import cardFooterStyle from "assets/jss/material-dashboard-react/components/cardFooterStyle.jsx";
 
-const CardFooter = ({ classes, className, children, plain, profile, stats, chart, ...rest }) => {
+const _CardFooter = ({ classes, className, children, plain, profile, stats, chart, ...rest }) => {
 	
 	const cardFooterClasses = classNames({
 		[classes.cardFooter]: true,
@@ -22,7 +22,7 @@ const CardFooter = ({ classes, className, children, plain, profile, stats, chart
 	);
 };
 
-CardFooter.propTypes = {
+_CardFooter.propTypes = {
 	classes: PropTypes.object.isRequired,
 	className: PropTypes.string,
 	plain: PropTypes.bool,
@@ -31,4 +31,6 @@ CardFooter.propTypes = {
 	chart: PropTypes.bool
 };
 
-export default withStyles(cardFooterStyle)(CardFooter);
+const CardFooter = withStyles(cardFooterStyle)(_CardFooter);
+
+export { CardFooter };

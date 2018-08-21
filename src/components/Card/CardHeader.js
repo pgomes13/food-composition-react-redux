@@ -5,7 +5,7 @@ import withStyles from "@material-ui/core/styles/withStyles";
 
 import cardHeaderStyle from "assets/jss/material-dashboard-react/components/cardHeaderStyle.jsx";
 
-const CardHeader = ({ classes, className, children, color, plain, stats, icon, ...rest }) => {
+const _CardHeader = ({ classes, className, children, color, plain, stats, icon, ...rest }) => {
 	
 	const cardHeaderClasses = classNames({
 		[classes.cardHeader]: true,
@@ -23,7 +23,7 @@ const CardHeader = ({ classes, className, children, color, plain, stats, icon, .
 	);
 };
 
-CardHeader.propTypes = {
+_CardHeader.propTypes = {
 	classes: PropTypes.object.isRequired,
 	className: PropTypes.string,
 	color: PropTypes.oneOf([
@@ -39,4 +39,6 @@ CardHeader.propTypes = {
 	icon: PropTypes.bool
 };
 
-export default withStyles(cardHeaderStyle)(CardHeader);
+const CardHeader = withStyles(cardHeaderStyle)(_CardHeader);
+
+export { CardHeader };

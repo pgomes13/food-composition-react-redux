@@ -5,10 +5,10 @@ import withStyles from "@material-ui/core/styles/withStyles";
 
 import cardStyle from "assets/jss/material-dashboard-react/components/cardStyle.jsx";
 
-const Card = ({ classes, className, children, plain, profile, chart, ...rest }) => {
+const _Card = ({ classes, className, children, plain, profile, chart, ...rest }) => {
 	
 	const cardClasses = classNames({
-		[clas, ses.card]: true,
+		[classes.card]: true,
 		[classes.cardPlain]: plain,
 		[classes.cardProfile]: profile,
 		[classes.cardChart]: chart,
@@ -22,7 +22,7 @@ const Card = ({ classes, className, children, plain, profile, chart, ...rest }) 
 	);
 };
 
-Card.propTypes = {
+_Card.propTypes = {
 	classes: PropTypes.object.isRequired,
 	className: PropTypes.string,
 	plain: PropTypes.bool,
@@ -30,4 +30,7 @@ Card.propTypes = {
 	chart: PropTypes.bool
 };
 
-export default withStyles(cardStyle)(Card);
+const Card = withStyles(cardStyle)(_Card);
+
+export { Card };
+

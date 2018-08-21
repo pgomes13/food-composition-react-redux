@@ -5,7 +5,7 @@ import withStyles from "@material-ui/core/styles/withStyles";
 
 import cardBodyStyle from "assets/jss/material-dashboard-react/components/cardBodyStyle.jsx";
 
-const CardBody = ({ classes, className, children, plain, profile, ...rest }) => {
+const _CardBody = ({ classes, className, children, plain, profile, ...rest }) => {
 
 	const cardBodyClasses = classNames({
 		[classes.cardBody]: true,
@@ -20,11 +20,13 @@ const CardBody = ({ classes, className, children, plain, profile, ...rest }) => 
 	);
 };
 
-CardBody.propTypes = {
+_CardBody.propTypes = {
 	classes: PropTypes.object.isRequired,
 	className: PropTypes.string,
 	plain: PropTypes.bool,
 	profile: PropTypes.bool
 };
 
-export default withStyles(cardBodyStyle)(CardBody);
+const CardBody = withStyles(cardBodyStyle)(_CardBody);
+
+export { CardBody };
