@@ -13,7 +13,7 @@ class App extends Component {
 
 	simpleAction = (event) => {
  		this.props.simpleAction();
-	}
+	};
 
 	render() {
 		return (
@@ -42,6 +42,6 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
  	simpleAction: () => dispatch(simpleAction())
-})
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
