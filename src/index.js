@@ -1,15 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux'
-import configureStore from './store';
+import { createBrowserHistory } from "history";
+import { Router, Route, Switch } from "react-router-dom";
 
-import './index.css';
-import App from './App';
+import configureStore from './store';
+import { indexRoutes } from './routes/index';
 import registerServiceWorker from './registerServiceWorker';
+
+const hist = createBrowserHistory();
 
 ReactDOM.render(
 	<Provider store={configureStore()}>
-		<App />
+		<Router history={hist}>
+			<Switch>
+                {indexRoutes.map((prop, key) => {
+                    return <Route path={prop.path} component={prop.component} key={key} />;
+                })}
+			</Switch>
+		</Router>
 	</Provider>, 
 	document.getElementById('root')
 );
