@@ -14,14 +14,14 @@ import Dashboard from "@material-ui/icons/Dashboard";
 import Search from "@material-ui/icons/Search";
 
 import { CustomInput, RegularButton as Button } from "../";
-import headerLinksStyle from "assets/jss/material-dashboard-react/components/headerLinksStyle";
+import { headerLinksStyle }  from "../../assets/jss/material-dashboard-react/components/headerLinksStyle";
 
 class _HeaderLinks extends React.Component {
     state = {
         open: false
     };
     handleToggle = () => {
-        this.setState(state => ({open: !state.open}));
+        this.setState(state => ({ open: !state.open }));
     };
 
     handleClose = event => {

@@ -23,4 +23,4 @@ const tooltipStyle = {
     lineBreak: "auto"
   }
 };
-export default tooltipStyle;
+export { tooltipStyle };

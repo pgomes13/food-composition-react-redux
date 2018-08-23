@@ -35,4 +35,4 @@ const checkboxAdnRadioStyle = {
   }
 };
 
-export default checkboxAdnRadioStyle;
+export { checkboxAdnRadioStyle };

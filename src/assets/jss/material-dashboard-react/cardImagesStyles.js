@@ -23,4 +23,4 @@ const cardImagesStyles = {
   }
 };
 
-export default cardImagesStyles;
+export { cardImagesStyles };

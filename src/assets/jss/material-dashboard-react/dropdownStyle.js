@@ -116,4 +116,4 @@ const dropdownStyle = theme => ({
   }
 });
 
-export default dropdownStyle;
+export { dropdownStyle };
