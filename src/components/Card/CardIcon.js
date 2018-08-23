@@ -3,7 +3,7 @@ import classNames from "classnames";
 import PropTypes from "prop-types";
 import withStyles from "@material-ui/core/styles/withStyles";
 
-import cardIconStyle from "assets/jss/material-dashboard-react/components/cardIconStyle.jsx";
+import { cardIconStyle } from "../../assets/jss/material-dashboard-react/components";
 
 const _CardIcon = ({ classes, className, children, color, ...rest }) => {
 

@@ -3,7 +3,7 @@ import {
     dangerColor
 } from "../../material-dashboard-react";
 
-import dropdownStyle from "../dropdownStyle";
+import { dropdownStyle } from "../dropdownStyle";
 
 const headerLinksStyle = theme => ({
     ...dropdownStyle(theme),

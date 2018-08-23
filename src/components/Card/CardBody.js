@@ -3,7 +3,7 @@ import classNames from "classnames";
 import PropTypes from "prop-types";
 import withStyles from "@material-ui/core/styles/withStyles";
 
-import cardBodyStyle from "assets/jss/material-dashboard-react/components/cardBodyStyle.jsx";
+import { cardBodyStyle } from "../../assets/jss/material-dashboard-react/components";
 
 const _CardBody = ({ classes, className, children, plain, profile, ...rest }) => {
 

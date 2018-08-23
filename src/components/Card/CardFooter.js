@@ -3,7 +3,7 @@ import classNames from "classnames";
 import PropTypes from "prop-types";
 import withStyles from "@material-ui/core/styles/withStyles";
 
-import cardFooterStyle from "assets/jss/material-dashboard-react/components/cardFooterStyle.jsx";
+import { cardFooterStyle } from "../../assets/jss/material-dashboard-react/components";
 
 const _CardFooter = ({ classes, className, children, plain, profile, stats, chart, ...rest }) => {
 	

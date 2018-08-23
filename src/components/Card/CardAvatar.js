@@ -3,7 +3,7 @@ import classNames from "classnames";
 import PropTypes from "prop-types";
 import withStyles from "@material-ui/core/styles/withStyles";
 
-import cardAvatarStyle from "assets/jss/material-dashboard-react/components/cardAvatarStyle.jsx";
+import { cardAvatarStyle } from "../../assets/jss/material-dashboard-react/components";
 
 const _CardAvatar = ({ classes, children, className, plain, profile, ...rest }) => {
 
