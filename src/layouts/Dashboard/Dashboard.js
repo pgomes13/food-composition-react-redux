@@ -63,7 +63,7 @@ class _Dashboard extends React.Component {
             <div className={classes.wrapper}>
                 <Sidebar
                     routes={dashboardRoutes}
-                    logoText={"Creative Tim"}
+                    logoText={"Food Composition"}
                     logo={logo}
                     image={image}
                     handleDrawerToggle={this.handleDrawerToggle}
