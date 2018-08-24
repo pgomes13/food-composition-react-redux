@@ -14,7 +14,7 @@ import Edit from "@material-ui/icons/Edit";
 import Close from "@material-ui/icons/Close";
 import Check from "@material-ui/icons/Check";
 // core components
-import tasksStyle from "assets/jss/material-dashboard-react/components/tasksStyle.jsx";
+import { tasksStyle } from "../../assets/jss/material-dashboard-react/components";
 
 class _Tasks extends React.Component {
     state = {

@@ -8,7 +8,7 @@ import Input from "@material-ui/core/Input";
 import Clear from "@material-ui/icons/Clear";
 import Check from "@material-ui/icons/Check";
 
-import customInputStyle from "assets/jss/material-dashboard-react/components/customInputStyle";
+import { customInputStyle } from "../../assets/jss/material-dashboard-react/components";
 
 const _CustomInput = ({ classes, formControlProps, labelText, id, labelProps, inputProps, error, success }) => {
 

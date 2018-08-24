@@ -7,7 +7,7 @@ import Tab from "@material-ui/core/Tab";
 
 import { Card, CardBody, CardHeader } from "../index";
 
-import customTabsStyle from "assets/jss/material-dashboard-react/components/customTabsStyle.jsx";
+import { customTabsStyle } from "../../assets/jss/material-dashboard-react/components";
 
 class _CustomTabs extends React.Component {
 	

@@ -13,7 +13,8 @@ import Icon from "@material-ui/core/Icon";
 
 import { HeaderLinks } from "../";
 
-import sidebarStyle from "assets/jss/material-dashboard-react/components/sidebarStyle.jsx";
+import { sidebarStyle }  from "../../assets/jss/material-dashboard-react/components";
+
 
 const _Sidebar = ({...props}) => {
     function activeRoute(routeName) {
