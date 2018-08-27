@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import classNames from "classnames";
 import withStyles from "@material-ui/core/styles/withStyles";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -33,10 +33,10 @@ class _HeaderLinks extends React.Component {
     };
 
     render() {
-        const {classes} = this.props;
-        const {open} = this.state;
+        const { classes } = this.props;
+        const { open } = this.state;
         return (
-            <div>
+            <Fragment>
                 <div className={classes.searchWrapper}>
                     <CustomInput
                         formControlProps={{
@@ -46,14 +46,15 @@ class _HeaderLinks extends React.Component {
                             placeholder: "Search",
                             inputProps: {
                                 "aria-label": "Search"
-                            }
+                            },
+                            fullWidth: true
                         }}
                     />
                     <Button color="white" aria-label="edit" justIcon round>
                         <Search/>
                     </Button>
                 </div>
-            </div>
+            </Fragment>
         );
     }
 }
