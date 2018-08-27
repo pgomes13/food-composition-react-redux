@@ -1,14 +1,18 @@
 import { createStore, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk';
+import createSagaMiddleware from 'redux-saga';
 import Immutable from 'immutable';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
-import rootReducer from './reducers/rootReducer';
+import rootReducer from './reducers';
+import rootSaga from './sagas';
 
 export default function configureStore(initialState = Immutable.Map()) {
-	return createStore(
-		rootReducer,
-		composeWithDevTools(
-			applyMiddleware(thunk)
-	));
+    const sagaMiddleware = createSagaMiddleware();
+
+    return {
+		...createStore(
+            rootReducer,
+			applyMiddleware(sagaMiddleware)),
+		runSaga: sagaMiddleware.run(rootSaga)
+	};
 };

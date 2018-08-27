@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
+import { connect } from 'react-redux';
 import withStyles from "@material-ui/core/styles/withStyles";
 import {
     GridItem,
@@ -12,13 +13,14 @@ import {
 
 import { dashboardStyle } from "../../assets/jss/material-dashboard-react/views/dashboardStyle";
 import { USDA_API_KEY, BASE_URL, SEARCH_API, searchProducts } from '../../api';
+import { searchProductsAction } from '../../actions';
 
 class _Dashboard extends Component {
 
     constructor() {
         super();
 
-        searchProducts(this.getQueryObject()).then(products => console.log('products - ', products));
+        this.props.dispatch(searchProductsAction(this.getQueryObject()));
     };
 
     getQueryObject = () => ({

@@ -1,0 +1,1 @@
+export { searchProductsAction } from './searchProductsActions';
