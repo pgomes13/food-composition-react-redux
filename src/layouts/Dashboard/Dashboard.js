@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Switch, Route, Redirect } from "react-router-dom";
 import PerfectScrollbar from "perfect-scrollbar";
@@ -21,13 +21,13 @@ const switchRoutes = (
     </Switch>
 );
 
-class _Dashboard extends React.Component {
+class _Dashboard extends Component {
     constructor(props) {
         super(props);
         this.state = {
             mobileOpen: false
         };
-        this.resizeFunction = this.resizeFunction.bind(this);
+
     }
     handleDrawerToggle = () => {
         this.setState({ mobileOpen: !this.state.mobileOpen });

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 import withStyles from "@material-ui/core/styles/withStyles";
 import {
@@ -11,13 +11,27 @@ import {
 } from "../../components";
 
 import { dashboardStyle } from "../../assets/jss/material-dashboard-react/views/dashboardStyle";
+import { USDA_API_KEY, BASE_URL, SEARCH_API, searchProducts } from '../../api';
 
-class _Dashboard extends React.Component {
+class _Dashboard extends Component {
+
+    constructor() {
+        super();
+
+        searchProducts(this.getQueryObject()).then(products => console.log('products - ', products));
+    };
+
+    getQueryObject = () => ({
+        base_url: BASE_URL,
+        type: SEARCH_API,
+        q: 'butter',
+        api_key: USDA_API_KEY
+    });
 
     render() {
         const { classes } = this.props;
         return (
-            <div>
+            <Fragment>
                 <GridContainer>
                     <GridItem xs={12} sm={12} md={12}>
                         <Card>
@@ -39,7 +53,7 @@ class _Dashboard extends React.Component {
                         </Card>
                     </GridItem>
                 </GridContainer>
-            </div>
+            </Fragment>
         );
     }
 }
