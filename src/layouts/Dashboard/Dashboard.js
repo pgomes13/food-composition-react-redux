@@ -27,9 +27,6 @@ const switchRoutes = (
 class _Dashboard extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            mobileOpen: false
-        };
         this.searchQuery = this.getQueryObject();
         this.handleSearchProducts(this.searchQuery);
     }
@@ -42,22 +39,13 @@ class _Dashboard extends Component {
     handleSearchProducts = query => {
         this.props.searchProducts(query);
     };
-    handleDrawerToggle = () => {
-        this.setState({ mobileOpen: !this.state.mobileOpen });
-    };
     getRoute() {
         return this.props.location.pathname !== "/maps";
-    }
-    resizeFunction() {
-        if (window.innerWidth >= 960) {
-            this.setState({ mobileOpen: false });
-        }
     }
     componentDidMount() {
         if (navigator.platform.indexOf("Win") > -1) {
             const ps = new PerfectScrollbar(this.refs.mainPanel);
         }
-        window.addEventListener("resize", this.resizeFunction);
     }
     componentDidUpdate(e) {
         if (e.history.location.pathname !== e.location.pathname) {
@@ -66,9 +54,6 @@ class _Dashboard extends Component {
                 this.setState({ mobileOpen: false });
             }
         }
-    }
-    componentWillUnmount() {
-        window.removeEventListener("resize", this.resizeFunction);
     }
     render() {
         const { classes, ...rest } = this.props;
@@ -79,15 +64,12 @@ class _Dashboard extends Component {
                     logoText={"Food Composition"}
                     logo={logo}
                     image={image}
-                    handleDrawerToggle={this.handleDrawerToggle}
-                    open={this.state.mobileOpen}
                     color="blue"
                     {...rest}
                 />
                 <div className={classes.mainPanel} ref="mainPanel">
                     <Header
                         routes={dashboardRoutes}
-                        handleDrawerToggle={this.handleDrawerToggle}
                         {...rest}
                     />
                     {/* On the /maps route we want the map to be on full screen - this is not possible if the content and conatiner classes are present because they have some paddings which would make the map smaller */}

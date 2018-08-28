@@ -12,7 +12,9 @@ export default function configureStore() {
     return {
 		...createStore(
             rootReducer,
-			applyMiddleware(sagaMiddleware)),
+            composeWithDevTools(
+				applyMiddleware(sagaMiddleware))
+		),
 		runSaga: sagaMiddleware.run(rootSaga)
 	};
 };
