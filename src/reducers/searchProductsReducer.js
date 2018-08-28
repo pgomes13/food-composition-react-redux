@@ -1,12 +1,16 @@
-import initialState from './initialState';
+import { fromJS } from 'immutable';
 import * as types from '../constants/actionTypes'
 
-export default (state = initialState.products, action) => {
-	switch (action.type) {
-		case types.SEARCH_PRODUCTS_SUCCESS:
-			return [...state, action.products];
+const searchProductsReducer = (initialState = {}) => {
+	return (state = initialState, action) => {
+        switch (action.type) {
+            case types.SEARCH_PRODUCTS_SUCCESS:
+                return state.set('payload', fromJS(action.products));
 
-		default:
-			return state;
-	}
+            default:
+                return state;
+        }
+    };
 };
+
+export { searchProductsReducer };

@@ -1,5 +1,4 @@
 import { put, call } from 'redux-saga/effects';
-import Immutable from 'immutable';
 
 import { searchProducts } from '../api';
 import * as types from '../constants/actionTypes';

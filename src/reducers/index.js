@@ -1,6 +1,10 @@
 import { combineReducers } from 'redux';
-import products from './searchProductsReducer';
+import Immutable from 'immutable';
+
+import { searchProductsReducer } from './searchProductsReducer';
 
 export default combineReducers({
-    products
+    data: combineReducers({
+        products: searchProductsReducer(Immutable.Map({}))
+    })
 });
