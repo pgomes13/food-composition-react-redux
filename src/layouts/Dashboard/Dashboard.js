@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { connect } from 'react-redux';
 import PropTypes from "prop-types";
 import { Switch, Route, Redirect } from "react-router-dom";
 import PerfectScrollbar from "perfect-scrollbar";
@@ -10,6 +11,8 @@ import { dashboardRoutes } from "../../routes/dashboard";
 import { appStyle as dashboardStyle } from "../../assets/jss/material-dashboard-react/layouts/dashboardStyle";
 import image from "../../assets/img/sidebar-2.jpg";
 import logo from "../../assets/img/reactlogo.png";
+import { searchProductsAction } from '../../actions';
+import { USDA_API_KEY, BASE_URL, SEARCH_API } from '../../api';
 
 const switchRoutes = (
     <Switch>
@@ -27,8 +30,18 @@ class _Dashboard extends Component {
         this.state = {
             mobileOpen: false
         };
-
+        this.searchQuery = this.getQueryObject();
+        this.handleSearchProducts(this.searchQuery);
     }
+    getQueryObject = () => ({
+        base_url: BASE_URL,
+        type: SEARCH_API,
+        q: 'butter',
+        api_key: USDA_API_KEY
+    });
+    handleSearchProducts = query => {
+        this.props.searchProducts(query);
+    };
     handleDrawerToggle = () => {
         this.setState({ mobileOpen: !this.state.mobileOpen });
     };
@@ -93,9 +106,20 @@ class _Dashboard extends Component {
 }
 
 _Dashboard.propTypes = {
-    classes: PropTypes.object.isRequired
+    classes: PropTypes.object.isRequired,
+    searchProducts: PropTypes.func.isRequired
 };
 
-const Dashboard = withStyles(dashboardStyle)(_Dashboard);
+const __Dashboard = withStyles(dashboardStyle)(_Dashboard);
 
-export { Dashboard };
+const mapStateToProps = ({ products }) => ({
+    products: products
+});
+
+const mapDispatchToProps  = dispatch => ({
+    searchProducts: payload => dispatch(searchProductsAction(payload))
+});
+
+const Dashboard = connect(mapStateToProps, mapDispatchToProps)(__Dashboard);
+
+export { Dashboard, __Dashboard };
