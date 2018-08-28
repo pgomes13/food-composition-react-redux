@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
+import Immutable from 'immutable';
 import PropTypes from "prop-types";
 import { Switch, Route, Redirect } from "react-router-dom";
 import PerfectScrollbar from "perfect-scrollbar";
@@ -30,33 +31,21 @@ class _Dashboard extends Component {
         this.searchQuery = this.getQueryObject();
         this.handleSearchProducts(this.searchQuery);
     }
+
     getQueryObject = () => ({
         base_url: BASE_URL,
         type: SEARCH_API,
         q: 'butter',
         api_key: USDA_API_KEY
     });
+
     handleSearchProducts = query => {
         this.props.searchProducts(query);
     };
-    getRoute() {
-        return this.props.location.pathname !== "/maps";
-    }
-    componentDidMount() {
-        if (navigator.platform.indexOf("Win") > -1) {
-            const ps = new PerfectScrollbar(this.refs.mainPanel);
-        }
-    }
-    componentDidUpdate(e) {
-        if (e.history.location.pathname !== e.location.pathname) {
-            this.refs.mainPanel.scrollTop = 0;
-            if (this.state.mobileOpen) {
-                this.setState({ mobileOpen: false });
-            }
-        }
-    }
+
     render() {
         const { classes, ...rest } = this.props;
+
         return (
             <div className={classes.wrapper}>
                 <Sidebar
@@ -72,15 +61,9 @@ class _Dashboard extends Component {
                         routes={dashboardRoutes}
                         {...rest}
                     />
-                    {/* On the /maps route we want the map to be on full screen - this is not possible if the content and conatiner classes are present because they have some paddings which would make the map smaller */}
-                    {this.getRoute() ? (
-                        <div className={classes.content}>
-                            <div className={classes.container}>{switchRoutes}</div>
-                        </div>
-                    ) : (
-                        <div className={classes.map}>{switchRoutes}</div>
-                    )}
-                    {this.getRoute() ? <Footer /> : null}
+                    <div className={classes.content}>
+                        <div className={classes.container}>{switchRoutes}</div>
+                    </div>
                 </div>
             </div>
         );
@@ -92,16 +75,10 @@ _Dashboard.propTypes = {
     searchProducts: PropTypes.func.isRequired
 };
 
-const __Dashboard = withStyles(dashboardStyle)(_Dashboard);
-
-const mapStateToProps = ({ products }) => ({
-    products: products
-});
-
 const mapDispatchToProps  = dispatch => ({
     searchProducts: payload => dispatch(searchProductsAction(payload))
 });
 
-const Dashboard = connect(mapStateToProps, mapDispatchToProps)(__Dashboard);
+const Dashboard = connect(null, mapDispatchToProps)(withStyles(dashboardStyle)(_Dashboard));
 
-export { Dashboard, __Dashboard };
+export { Dashboard, _Dashboard };
