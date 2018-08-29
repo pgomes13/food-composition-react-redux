@@ -17,6 +17,6 @@ export function* searchProductsSaga({ payload }) {
             put({ type: types.SEARCH_PRODUCTS_SUCCESS, products })
         ];
     } catch (error) {
-        yield put({ types: types.SEARCH_PRODUCTS_ERROR, error });
+        yield put({ type: types.SEARCH_PRODUCTS_ERROR, error });
     }
 }

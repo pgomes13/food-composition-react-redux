@@ -1,6 +1,8 @@
 import React, { Component, Fragment } from "react";
+import { connect } from 'react-redux';
 import PropTypes from "prop-types";
 import withStyles from "@material-ui/core/styles/withStyles";
+import { List } from 'immutable';
 import Search from "@material-ui/icons/Search";
 import {
     GridItem,
@@ -14,8 +16,33 @@ import {
 } from "../../components";
 
 import { dashboardStyle } from "../../assets/jss/material-dashboard-react/views/dashboardStyle";
+import { searchProductsAction } from '../../actions';
+import { USDA_API_KEY, BASE_URL, SEARCH_API } from '../../api';
 
 class _Dashboard extends Component {
+    constructor(props) {
+        super(props);
+        this.searchQuery = this.getQueryObject();
+    }
+
+    getQueryObject = () => ({
+        base_url: BASE_URL,
+        type: SEARCH_API,
+        q: this.props.searchText,
+        api_key: USDA_API_KEY
+    });
+
+    handleSearchProducts = () => this.props.searchProducts(this.searchQuery);
+
+    getProductResults = () => {
+        const { products } = this.props;
+        console.log('products - ', products);
+
+
+        return products.map((product, i) => {
+            return [ i, product.get('name'), product.get('group'), product.get('ndbno') ];
+        });
+    };
 
     render() {
         const { classes } = this.props;
@@ -32,12 +59,13 @@ class _Dashboard extends Component {
                                 placeholder: "Search products",
                                 inputProps: {
                                     "aria-label": "Search"
-                                }
+                                },
+                                value: this.props.searchText
                             }}
                         />
                     </GridItem>
                     <GridItem xs={12} sm={1}>
-                        <Button color="white" aria-label="edit" justIcon round>
+                        <Button color="white" aria-label="edit" justIcon round onClick={this.handleSearchProducts}>
                             <Search />
                         </Button>
                     </GridItem>
@@ -49,13 +77,8 @@ class _Dashboard extends Component {
                             <CardBody>
                                 <Table
                                     tableHeaderColor="warning"
-                                    tableHead={["ID", "Name", "Salary", "Country"]}
-                                    tableData={[
-                                        ["1", "Dakota Rice", "$36,738", "Niger"],
-                                        ["2", "Minerva Hooper", "$23,789", "Curaçao"],
-                                        ["3", "Sage Rodriguez", "$56,142", "Netherlands"],
-                                        ["4", "Philip Chaney", "$38,735", "Korea, South"]
-                                    ]}
+                                    tableHead={["No.", "Name", "Group", "NDB No."]}
+                                    tableData={this.getProductResults()}
                                 />
                             </CardBody>
                         </Card>
@@ -67,9 +90,20 @@ class _Dashboard extends Component {
 }
 
 _Dashboard.propTypes = {
-    classes: PropTypes.object.isRequired
+    classes: PropTypes.object.isRequired,
+    searchText: PropTypes.string,
+    searchProducts: PropTypes.func.isRequired,
+    products: PropTypes.array
 };
 
-const Dashboard = withStyles(dashboardStyle)(_Dashboard);
+const mapStateToProps = state => ({
+    products: state.data.products.get('payload') || []
+});
 
-export { Dashboard };
+const mapDispatchToProps  = dispatch => ({
+    searchProducts: payload => dispatch(searchProductsAction(payload))
+});
+
+const Dashboard = connect(mapStateToProps, mapDispatchToProps)(withStyles(dashboardStyle)(_Dashboard));
+
+export { Dashboard, _Dashboard };

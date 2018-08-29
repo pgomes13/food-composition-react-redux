@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { connect } from 'react-redux';
 import PropTypes from "prop-types";
 import { Switch, Route, Redirect } from "react-router-dom";
 import "perfect-scrollbar/css/perfect-scrollbar.css";
@@ -10,8 +9,6 @@ import { dashboardRoutes } from "../../routes/dashboard";
 import { appStyle as dashboardStyle } from "../../assets/jss/material-dashboard-react/layouts/dashboardStyle";
 import image from "../../assets/img/sidebar-2.jpg";
 import logo from "../../assets/img/reactlogo.png";
-import { searchProductsAction } from '../../actions';
-import { USDA_API_KEY, BASE_URL, SEARCH_API } from '../../api';
 
 const switchRoutes = (
     <Switch>
@@ -24,22 +21,6 @@ const switchRoutes = (
 );
 
 class _Dashboard extends Component {
-    constructor(props) {
-        super(props);
-        this.searchQuery = this.getQueryObject();
-        this.handleSearchProducts(this.searchQuery);
-    }
-
-    getQueryObject = () => ({
-        base_url: BASE_URL,
-        type: SEARCH_API,
-        q: 'butter',
-        api_key: USDA_API_KEY
-    });
-
-    handleSearchProducts = query => {
-        this.props.searchProducts(query);
-    };
 
     render() {
         const { classes, ...rest } = this.props;
@@ -69,14 +50,9 @@ class _Dashboard extends Component {
 }
 
 _Dashboard.propTypes = {
-    classes: PropTypes.object.isRequired,
-    searchProducts: PropTypes.func.isRequired
+    classes: PropTypes.object.isRequired
 };
 
-const mapDispatchToProps  = dispatch => ({
-    searchProducts: payload => dispatch(searchProductsAction(payload))
-});
-
-const Dashboard = connect(null, mapDispatchToProps)(withStyles(dashboardStyle)(_Dashboard));
+const Dashboard = withStyles(dashboardStyle)(_Dashboard);
 
 export { Dashboard, _Dashboard };
