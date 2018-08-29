@@ -1,13 +1,16 @@
 import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 import withStyles from "@material-ui/core/styles/withStyles";
+import Search from "@material-ui/icons/Search";
 import {
     GridItem,
     GridContainer,
     CustomTable as Table,
     Card,
     CardHeader,
-    CardBody
+    CardBody,
+    CustomInput,
+    RegularButton as Button
 } from "../../components";
 
 import { dashboardStyle } from "../../assets/jss/material-dashboard-react/views/dashboardStyle";
@@ -19,6 +22,25 @@ class _Dashboard extends Component {
         return (
             <Fragment>
                 <GridContainer>
+                    <GridItem xs={12} sm={11}>
+                        <CustomInput
+                            formControlProps={{
+                                className: classes.margin + " " + classes.search,
+                                fullWidth: true
+                            }}
+                            inputProps={{
+                                placeholder: "Search products",
+                                inputProps: {
+                                    "aria-label": "Search"
+                                }
+                            }}
+                        />
+                    </GridItem>
+                    <GridItem xs={12} sm={1}>
+                        <Button color="white" aria-label="edit" justIcon round>
+                            <Search />
+                        </Button>
+                    </GridItem>
                     <GridItem xs={12} sm={12} md={12}>
                         <Card>
                             <CardHeader color="warning">

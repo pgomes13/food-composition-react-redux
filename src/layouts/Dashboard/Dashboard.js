@@ -1,13 +1,11 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
-import Immutable from 'immutable';
 import PropTypes from "prop-types";
 import { Switch, Route, Redirect } from "react-router-dom";
-import PerfectScrollbar from "perfect-scrollbar";
 import "perfect-scrollbar/css/perfect-scrollbar.css";
 import withStyles from "@material-ui/core/styles/withStyles";
 
-import { Header, Footer, Sidebar }  from "../../components";
+import { Header, Sidebar }  from "../../components";
 import { dashboardRoutes } from "../../routes/dashboard";
 import { appStyle as dashboardStyle } from "../../assets/jss/material-dashboard-react/layouts/dashboardStyle";
 import image from "../../assets/img/sidebar-2.jpg";
