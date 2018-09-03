@@ -22,17 +22,19 @@ import { USDA_API_KEY, BASE_URL, SEARCH_API } from '../../api';
 class _Dashboard extends Component {
     constructor(props) {
         super(props);
-        this.searchQuery = this.getQueryObject();
+        this.state = {
+            searchText: ''
+        };
     }
 
     getQueryObject = () => ({
         base_url: BASE_URL,
         type: SEARCH_API,
-        q: this.props.searchText,
+        q: this.state.searchText,
         api_key: USDA_API_KEY
     });
 
-    handleSearchProducts = () => this.props.searchProducts(this.searchQuery);
+    handleSearchProducts = () => this.props.searchProducts(this.getQueryObject());
 
     getProductResults = () => {
         const { products } = this.props;
@@ -58,7 +60,7 @@ class _Dashboard extends Component {
                                 inputProps: {
                                     "aria-label": "Search"
                                 },
-                                value: this.props.searchText
+                                onChange: (event) => this.setState({ searchText: event.target.value })
                             }}
                         />
                     </GridItem>
@@ -89,7 +91,6 @@ class _Dashboard extends Component {
 
 _Dashboard.propTypes = {
     classes: PropTypes.object.isRequired,
-    searchText: PropTypes.string,
     searchProducts: PropTypes.func.isRequired,
     products: PropTypes.array
 };

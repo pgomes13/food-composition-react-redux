@@ -12,7 +12,7 @@
  * @return {string} - the complete api query string
  */
 export const constructAPIQueryString = ({ base_url, type, api_key, q = "", ds = "", fg = "", sort = "r", max = 50, offset = 0 }) => {
-    return `${base_url}/${type}/?q=${q}&ds=${ds}&fg=${fg}&sort=${sort}&max=${max}&offset=${offset}&api_key=${api_key}`;
+    return `${base_url}/${type}?q=${q}&ds=${ds}&fg=${fg}&sort=${sort}&max=${max}&offset=${offset}&api_key=${api_key}`;
 };
 
 /**
