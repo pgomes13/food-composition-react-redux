@@ -2,7 +2,7 @@ import React, { Component, Fragment } from "react";
 import { connect } from 'react-redux';
 import PropTypes from "prop-types";
 import withStyles from "@material-ui/core/styles/withStyles";
-import { List } from 'immutable';
+import { toJS, List } from 'immutable';
 import Search from "@material-ui/icons/Search";
 import {
     GridItem,
@@ -36,11 +36,9 @@ class _Dashboard extends Component {
 
     getProductResults = () => {
         const { products } = this.props;
-        console.log('products - ', products);
 
-
-        return products.map((product, i) => {
-            return [ i, product.get('name'), product.get('group'), product.get('ndbno') ];
+        return products.toJS().map((product, i) => {
+            return [i, product.name, product.group, product.ndbno];
         });
     };
 
@@ -97,7 +95,7 @@ _Dashboard.propTypes = {
 };
 
 const mapStateToProps = state => ({
-    products: state.data.products.get('payload') || []
+    products: state.getIn(['data', 'products', 'payload']) || List()
 });
 
 const mapDispatchToProps  = dispatch => ({
