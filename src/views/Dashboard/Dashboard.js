@@ -54,7 +54,7 @@ class _Dashboard extends Component {
         const { products } = this.props;
 
         return products.toJS().map((product, i) => {
-            return [i, product.name, product.group, product.ndbno];
+            return [i + 1, product.name, product.group, product.ndbno];
         });
     };
 
@@ -92,11 +92,13 @@ class _Dashboard extends Component {
                                 <h4 className={classes.cardTitleWhite}>Food Search Results</h4>
                             </CardHeader>
                             <CardBody>
-                                <Table
-                                    tableHeaderColor="warning"
-                                    tableHead={["No.", "Name", "Group", "NDB No."]}
-                                    tableData={this.getProductResults()}
-                                />
+                                { products &&
+                                    <Table
+                                        tableHeaderColor="warning"
+                                        tableHead={["No.", "Name", "Group", "NDB No."]}
+                                        tableData={products}
+                                    />
+                                }
                             </CardBody>
                         </Card>
                     </GridItem>
