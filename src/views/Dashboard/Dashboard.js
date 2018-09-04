@@ -27,6 +27,10 @@ class _Dashboard extends Component {
         };
     }
 
+    /**
+     * Gey the query object for the request
+     * @return {Object} - the query object
+     */
     getQueryObject = () => ({
         base_url: BASE_URL,
         type: SEARCH_API,
@@ -34,8 +38,18 @@ class _Dashboard extends Component {
         api_key: USDA_API_KEY
     });
 
-    handleSearchProducts = () => this.props.searchProducts(this.getQueryObject());
+    /**
+     *  Search the products
+     */
+    searchProducts = () => {
+        const { searchProducts } = this.props;
+        searchProducts(this.getQueryObject());
+    }
 
+    /**
+     * Get the product results
+     * @return {Array} - the searched products
+     */
     getProductResults = () => {
         const { products } = this.props;
 
@@ -44,8 +58,11 @@ class _Dashboard extends Component {
         });
     };
 
+
     render() {
         const { classes } = this.props;
+        const products = this.getProductResults();
+
         return (
             <Fragment>
                 <GridContainer>
@@ -65,7 +82,7 @@ class _Dashboard extends Component {
                         />
                     </GridItem>
                     <GridItem xs={12} sm={1}>
-                        <Button color="white" aria-label="edit" justIcon round onClick={this.handleSearchProducts}>
+                        <Button color="white" aria-label="edit" justIcon round onClick={this.searchProducts}>
                             <Search />
                         </Button>
                     </GridItem>
@@ -95,10 +112,20 @@ _Dashboard.propTypes = {
     products: PropTypes.array
 };
 
+/**
+ * Extract the following data from the store
+ * @param {Object} state - Redux store state.
+ * @return {Object} - The state attributes to add to props.
+ */
 const mapStateToProps = state => ({
     products: state.getIn(['data', 'products', 'payload']) || List()
 });
 
+/**
+ * Map dispatch function to component props
+ * @param {Function} dispatch - store's dispatch function
+ * @returns {Object} props that contain searchProducts function
+ */
 const mapDispatchToProps  = dispatch => ({
     searchProducts: payload => dispatch(searchProductsAction(payload))
 });
